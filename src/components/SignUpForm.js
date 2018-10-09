@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux'; // New code
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Inputs, Buttons } from './common';
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -23,7 +22,7 @@ class LoginForm extends Component {
   renderButton() {
     return (
       <Buttons
-        title="login"
+        title="SignUp!"
         onPress={this.onButtonPress.bind(this)}
         loading={this.props.loading}
       />
@@ -32,32 +31,46 @@ class LoginForm extends Component {
 
   render() {
     const {
-      textContent,
-      errorTextStyle,
       signinConatainer
     } = styles;
 
     return (
       <View style={signinConatainer}>
         <Inputs
+          secureTextEntry
+          value={this.props.password}
+          onChangeText={this.onPasswordChange.bind(this)}
+          placeholder="First Name"
+          name='lock'
+        />
+        <Inputs
+          secureTextEntry
+          value={this.props.password}
+          onChangeText={this.onPasswordChange.bind(this)}
+          placeholder="Last Name"
+          name='lock'
+        />
+        <Inputs
+          secureTextEntry
+          value={this.props.password}
+          onChangeText={this.onPasswordChange.bind(this)}
+          placeholder="555-555-5555"
+          name='lock'
+        />
+        <Inputs
           value={this.props.email}
           onChangeText={this.onEmailChange.bind(this)}
           placeholder="email@gmail.com"
-          style={{ marginTop: 200 }}
+          name='user'
         />
         <Inputs
           secureTextEntry
           value={this.props.password}
           onChangeText={this.onPasswordChange.bind(this)}
           placeholder="password"
+          name='lock'
         />
-        <Text style={textContent} onPress={() => Actions.signUp()}>Create Account</Text>
-        <Text style={errorTextStyle}>
-          {this.props.error}
-        </Text>
         {this.renderButton()}
-
-
       </View>
     );
   }
@@ -67,19 +80,13 @@ const styles = {
   signinConatainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#001f3f',
+    justifyContent: 'center'
   },
 
   errorTextStyle: {
     fontSize: 20,
     color: 'red'
   },
-  textContent: {
-    color: '#0074D9',
-    backgroundColor: 'transparent',
-    marginTop: 10
-  },
-
 };
 
 const mapStateToProps = ({ auth }) => {
@@ -89,4 +96,4 @@ const mapStateToProps = ({ auth }) => {
 
 export default connect(mapStateToProps, {
   emailChanged, passwordChanged, loginUser
-})(LoginForm);
+})(SignUpForm);

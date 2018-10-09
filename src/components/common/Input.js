@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from 'react-native-elements';
 
-const Inputs = ({ value, onChangeText, placeholder, secureTextEntry, name }) => {
+const Inputs = ({ value, onChangeText, placeholder, secureTextEntry, style }) => {
   const { inputStyle, containerStyle } = styles;
   return (
     <Input
@@ -10,20 +10,21 @@ const Inputs = ({ value, onChangeText, placeholder, secureTextEntry, name }) => 
       onChangeText={onChangeText}
       inputStyle={inputStyle}
       placeholder={placeholder}
-      inputContainerStyle={containerStyle}
-      leftIcon={{ type: 'font-awesome', name, color: 'grey' }}
+      inputContainerStyle={[containerStyle, style]}
     />
   );
 };
 
 const styles = {
   inputStyle: {
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    backgroundColor: '#001f3f',
     marginHorizontal: 20,
-    paddingLeft: 45,
-    borderRadius: 20,
-    color: 'black',
+    paddingLeft: 15,
+    borderWidth: 0.5,
+    borderRadius: 10,
+    color: 'white',
     flex: 1,
+    borderColor: 'white'
 
   },
   containerStyle: {

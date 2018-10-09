@@ -21,22 +21,24 @@ const Buttons = ({ onPress, title, loading }) => {
 const styles = {
   buttoncontainerStyle: {
     flex: 1,
+    marginTop: 10
   },
   titleStyle: {
     fontWeight: '700',
-    color: '#172F51'
+    color: '#0074D9'
   },
+
   buttonStyle: {
-    backgroundColor: 'white',
-    borderRadius: 20,
-    borderWidth: 0,
+    backgroundColor: '#001f3f',
+    borderRadius: 10,
+    borderWidth: 0.5,
     width: 200,
-    borderColor: 'black',
+    borderColor: 'white',
 
   },
   loadingProps: {
     size: 'large',
-    color: 'rgba(111, 202, 186, 1)'
+    color: '#0074D9'
   },
 };
 

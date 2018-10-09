@@ -37,12 +37,14 @@ class EmployeeList extends Component {
   render() {
     return (
       <View>
+        <SearchBar placeholder="Type Here..." lightTheme round />
+
         <ListView
           enableEmptySections
           dataSource={this.dataSource}
           renderRow={this.renderRow}
         />
-        <SearchBar placeholder="Type Here..." lightTheme round />
+
       </View>
 
     );
