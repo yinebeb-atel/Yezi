@@ -26,16 +26,16 @@ const styles = {
 
   titleStyle: {
     fontWeight: '700',
-    color: '#0074D9'
+    color: 'white'
   },
 
   buttonStyle: {
-    backgroundColor: '#001f3f',
+    backgroundColor: '#E0E0E0',
     borderRadius: 10,
     borderWidth: 0.5,
     width: 200,
     height: 40,
-    borderColor: 'gray',
+    borderColor: 'white',
 
   },
   loadingProps: {

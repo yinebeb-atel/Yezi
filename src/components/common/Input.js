@@ -21,14 +21,14 @@ const Inputs = ({ value, onChangeText, placeholder, secureTextEntry, style, labe
 
 const styles = {
   inputStyle: {
-    backgroundColor: '#001f3f',
+    backgroundColor: '#F8F8F8',
     marginHorizontal: 20,
     paddingLeft: 15,
     borderWidth: 0.5,
     borderRadius: 10,
-    color: 'white',
+    color: 'black',
     flex: 1,
-    borderColor: 'gray',
+    borderColor: 'white',
     height: 30,
 
   },

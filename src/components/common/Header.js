@@ -1,23 +1,27 @@
 // Import libraries for making a component
 import React from 'react';
-import { Text, View } from 'react-native';
-
+import { Header, SearchBar } from 'react-native-elements';
 // Make a component
-const Header = (props) => {
-  const { textStyle, viewStyle } = styles;
+const Headers = () => {
+  const { textStyle, outerContainerStyles } = styles;
+
+  const searchBar = () => {
+    return (<SearchBar placeholder="Type Here..." lightTheme round />);
+  };
 
   return (
-    <View style={viewStyle}>
-      <Text style={textStyle}>{props.headerText}</Text>
-    </View>
+    <Header
+      // leftComponent={{ icon: 'home', color: 'blue' }}
+      centerComponent={{ text: 'Yezi', style: { textStyle } }}
+      rightComponent={{ icon: 'settings', color: 'blue' }}
+      backgroundColor='#fff'
+      outerContainerStyles={outerContainerStyles}
+    />
   );
 };
 
 const styles = {
-  viewStyle: {
-    backgroundColor: '#F8F8F8',
-    justifyContent: 'center',
-    alignItems: 'center',
+  outerContainerStyles: {
     height: 60,
     paddingTop: 15,
     shadowColor: '#000',
@@ -27,9 +31,10 @@ const styles = {
     position: 'relative'
   },
   textStyle: {
-    fontSize: 20
+    fontSize: 20,
+    color: '#fff'
   }
 };
 
 // Make the component available to other parts of the app
-export { Header };
+export { Headers };

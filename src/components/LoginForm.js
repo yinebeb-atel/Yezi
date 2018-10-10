@@ -58,7 +58,7 @@ const styles = {
   signinConatainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#001f3f',
+    // backgroundColor: '#001f3f',
   },
 
   errorTextStyle: {
