@@ -23,6 +23,7 @@ const styles = {
     flex: 1,
     marginTop: 15
   },
+
   titleStyle: {
     fontWeight: '700',
     color: '#0074D9'
@@ -33,6 +34,7 @@ const styles = {
     borderRadius: 10,
     borderWidth: 0.5,
     width: 200,
+    height: 40,
     borderColor: 'gray',
 
   },

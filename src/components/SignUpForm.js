@@ -47,7 +47,7 @@ class SignUpForm extends Component {
           value={this.props.firstname}
           onChangeText={this.onFirstNameChange.bind(this)}
           placeholder="First Name"
-          style={{ marginTop: 100 }}
+          style={{ marginTop: 70 }}
         />
         <Inputs
           value={this.props.lastname}
@@ -65,6 +65,7 @@ class SignUpForm extends Component {
           placeholder="email@gmail.com"
         />
         <Inputs
+          secureTextEntry
           value={this.props.password}
           onChangeText={this.onPasswordChange.bind(this)}
           placeholder="password"
