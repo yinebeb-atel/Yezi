@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { SearchBar } from 'react-native-elements';
 import { View, ListView } from 'react-native';
 import { employeesFetch } from '../actions';
 import BusinessDetail from './BusinessDetail';
-import searchBar from './common';
 
 
-class EmployeeList extends Component {
+class BusinessList extends Component {
   componentWillMount() {
     this.props.employeesFetch();
 
@@ -15,10 +15,6 @@ class EmployeeList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // nextProps are the next set of props that this component
-    // will be rendered with
-    // this.props is still the old set of props
-
     this.createDataSource(nextProps);
   }
 
@@ -37,15 +33,23 @@ class EmployeeList extends Component {
   render() {
     return (
       <View style={styles.containerStyle}>
-        <searchBar />
+        <SearchBar
+          placeholder="Type Here..."
+          lightTheme
+          round
+          showLoading={false}//redux
+          clearIcon //redux
+          cancelButtonTitle
+
+        />
         <ListView
           enableEmptySections
           dataSource={this.dataSource}
           renderRow={this.renderRow}
         />
 
-      </View>
 
+      </View>
     );
   }
 }
@@ -75,4 +79,4 @@ const mapStateToProps = state => {
   return { employees };
 };
 
-export default connect(mapStateToProps, { employeesFetch })(EmployeeList);
+export default connect(mapStateToProps, { employeesFetch })(BusinessList);

@@ -1,23 +1,27 @@
 import React from 'react';
+import { View } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
 
-const searchBar = () => {
+const SearchBars = () => {
   return (
-    <SearchBar
-      placeholder="Type Here..."
-      lightTheme
-      round
-      showLoading //redux
+    <View>
+      <SearchBar
+        placeholder="Type Here..."
+        lightTheme
+        round
+        showLoading //redux
+        clearIcon //redux
+        cancelButtonTitle
 
-      clearIcon //redux
-      //onClear local method
-      cancelButtonTitle //ios only || canceIcon --logic to identify os
+      />
+    </View>
 
-    // onChangeText={someMethod}
-    // onClear={someMethod}
-    />
   );
 };
 
-export { searchBar };
+export { SearchBars };
+
+//onClear local method
+// onChangeText={someMethod}
+// onClear={someMethod}

@@ -3,7 +3,7 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import BusinessList from './components/BusinessList';
-import EmployeeList from './components/EmployeeList';
+// import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 import { TabIcon, Headers } from './components/common';

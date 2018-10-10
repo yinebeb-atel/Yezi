@@ -1,54 +1,76 @@
-import React from 'react';
-import { ListItem } from 'react-native-elements';
-import { TouchableOpacity } from 'react-native';
-// import { Text, View, Image, Linking } from 'react-native';
-// import { Card, Buttons, CardSection } from './common';
+import React, { Component } from 'react';
+import { ListItem, Rating } from 'react-native-elements';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { CircularProgress } from './common';
 
-const BusinessDetail = (props) => {
-  const { name } = props.employee;
-  const thumbnailImage = 'https://i.imgur.com/K3KJ3w4h.jpg';
+class BusinessDetail extends Component {
 
-  const {
-    containerStyle,
-    badgestyle,
-  } = styles;
+  showProgress = (percentage) => {
+    return (<CircularProgress percentage={percentage}>
+      <View>
+        <Text>{percentage}</Text>
+      </View>
+    </CircularProgress>
+    );
+  };
 
-  return (
-    <ListItem
-      key={name} // uid
-      //onPress
-      //onLongPress
-      component={TouchableOpacity}
-      leftAvatar={{ source: { uri: thumbnailImage } }}
-      title={name}
-      subtitle={'artist'}
-      badge={badgestyle}
-      containerStyle={containerStyle}
-    />
-  );
-};
+  showRatings = () => {
+    return (
+      <Rating
+
+        type="star"
+        fractions={1}
+        startingValue={3.6}
+        imageSize={10}
+        onFinishRating={this.ratingCompleted}
+        style={styles.ratingStyle}
+      />
+    );
+  };
+
+  badgeStyle = (v = 4) => {
+    return {
+      value: v,
+      textStyle: { color: 'white' },
+      containerStyle: { marginTop: -20, backgroundColor: '#E0E0E0' }
+    };
+  }
+  render() {
+    const thumbnailImage = 'https://i.imgur.com/K3KJ3w4h.jpg';
+    const { name } = this.props.employee;
+    return (
+      <ListItem
+        key={name} // uid
+        //onPress
+        //onLongPress
+        component={TouchableOpacity}
+        leftAvatar={{ source: { uri: thumbnailImage } }}
+        title={name}
+        subtitle={'artist'}
+        rightSubtitle={this.showRatings()}
+        // badge={this.badgeStyle()}
+        containerStyle={styles.containerStyle}
+        rightElement={this.showProgress()}
+
+      />
+
+    );
+  }
+
+}
 
 const styles = {
-
-  badgestyle: {
-    value: 3,
-    textStyle: { color: 'white' },
-    containerStyle: {
-      marginTop: -20, backgroundColor: '#E0E0E0'
-    }
-
-  },
-  bottomDivider: {
-    borderWidth: 2,
-    borderColor: 'red'
-  },
   containerStyle: {
-    // borderBottomWidth: 4,
+    marginTop: 5,
     marginBottom: 5,
     borderBottomColor: '#E0E0E0',
     borderRadius: 10,
+  },
+  ratingStyle: {
+    padding: 1,
+    margin: 1,
+
   }
 };
 
 export default BusinessDetail;
-
