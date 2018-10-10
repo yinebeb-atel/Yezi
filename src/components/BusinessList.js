@@ -1,11 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { View, ListView } from 'react-native';
 import { employeesFetch } from '../actions';
-import ListItem from './ListItem';
 import BusinessDetail from './BusinessDetail';
+import searchBar from './common';
 
 
 class EmployeeList extends Component {
@@ -38,8 +37,7 @@ class EmployeeList extends Component {
   render() {
     return (
       <View style={styles.containerStyle}>
-        {/* <SearchBar placeholder="Type Here..." lightTheme round /> */}
-
+        <searchBar />
         <ListView
           enableEmptySections
           dataSource={this.dataSource}

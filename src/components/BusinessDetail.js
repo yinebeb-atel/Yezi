@@ -32,16 +32,21 @@ const styles = {
 
   badgestyle: {
     value: 3,
-    textStyle: { color: 'orange' },
-    containerStyle: { marginTop: -20 }
+    textStyle: { color: 'white' },
+    containerStyle: {
+      marginTop: -20, backgroundColor: '#E0E0E0'
+    }
+
   },
   bottomDivider: {
     borderWidth: 2,
     borderColor: 'red'
   },
   containerStyle: {
-    borderBottomWidth: 4,
-    borderBottomColor: '#E0E0E0'
+    // borderBottomWidth: 4,
+    marginBottom: 5,
+    borderBottomColor: '#E0E0E0',
+    borderRadius: 10,
   }
 };
 
