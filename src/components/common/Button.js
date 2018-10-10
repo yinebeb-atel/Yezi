@@ -21,7 +21,7 @@ const Buttons = ({ onPress, title, loading }) => {
 const styles = {
   buttoncontainerStyle: {
     flex: 1,
-    marginTop: 10
+    marginTop: 15
   },
   titleStyle: {
     fontWeight: '700',
@@ -33,7 +33,7 @@ const styles = {
     borderRadius: 10,
     borderWidth: 0.5,
     width: 200,
-    borderColor: 'white',
+    borderColor: 'gray',
 
   },
   loadingProps: {

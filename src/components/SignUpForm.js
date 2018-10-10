@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser } from '../actions';
+import {
+  emailChanged,
+  passwordChanged,
+  signUpUser,
+  firstNameChanged,
+  lastNameChanged,
+  phoneChanged,
+} from '../actions';
 import { Inputs, Buttons } from './common';
 
 class SignUpForm extends Component {
+  onFirstNameChange(text) {
+    this.props.firstNameChanged(text);
+  }
+
+  onLastNameChange(text) {
+    this.props.lastNameChanged(text);
+  }
+
+  onPhoneChange(text) {
+    this.props.phoneChanged(text);
+  }
+
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -15,72 +34,60 @@ class SignUpForm extends Component {
 
   onButtonPress() {
     const { email, password } = this.props;
-
-    this.props.loginUser({ email, password });
+    this.props.signUpUser({ email, password });
   }
 
-  renderButton() {
-    return (
-      <Buttons
-        title="SignUp!"
-        onPress={this.onButtonPress.bind(this)}
-        loading={this.props.loading}
-      />
-    );
-  }
 
   render() {
-    const {
-      signinConatainer
-    } = styles;
+    const { signupConatainer, errorTextStyle } = styles;
 
     return (
-      <View style={signinConatainer}>
+      <View style={signupConatainer}>
         <Inputs
-          secureTextEntry
-          value={this.props.password}
-          onChangeText={this.onPasswordChange.bind(this)}
+          value={this.props.firstname}
+          onChangeText={this.onFirstNameChange.bind(this)}
           placeholder="First Name"
-          name='lock'
+          style={{ marginTop: 100 }}
         />
         <Inputs
-          secureTextEntry
-          value={this.props.password}
-          onChangeText={this.onPasswordChange.bind(this)}
+          value={this.props.lastname}
+          onChangeText={this.onLastNameChange.bind(this)}
           placeholder="Last Name"
-          name='lock'
         />
         <Inputs
-          secureTextEntry
-          value={this.props.password}
-          onChangeText={this.onPasswordChange.bind(this)}
+          value={this.props.phone}
+          onChangeText={this.onPhoneChange.bind(this)}
           placeholder="555-555-5555"
-          name='lock'
         />
         <Inputs
           value={this.props.email}
           onChangeText={this.onEmailChange.bind(this)}
           placeholder="email@gmail.com"
-          name='user'
         />
         <Inputs
-          secureTextEntry
           value={this.props.password}
           onChangeText={this.onPasswordChange.bind(this)}
           placeholder="password"
-          name='lock'
+          style={{ marginBottom: 10 }}
         />
-        {this.renderButton()}
+        <Text style={errorTextStyle}>
+          {this.props.error}
+        </Text>
+        <Buttons
+          title="Create"
+          onPress={this.onButtonPress.bind(this)}
+          loading={this.props.loading}
+        />
       </View>
     );
   }
 }
 
 const styles = {
-  signinConatainer: {
+  signupConatainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: '#001f3f',
   },
 
   errorTextStyle: {
@@ -95,5 +102,10 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps, {
-  emailChanged, passwordChanged, loginUser
+  emailChanged,
+  passwordChanged,
+  signUpUser,
+  firstNameChanged,
+  lastNameChanged,
+  phoneChanged,
 })(SignUpForm);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scene, Router, Actions, Stack } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import EmployeeList from './components/EmployeeList';
@@ -42,5 +42,3 @@ const RouterComponent = () => {
 
 
 export default RouterComponent;
-
-

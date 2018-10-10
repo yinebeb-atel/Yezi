@@ -24,7 +24,7 @@ const styles = {
     borderRadius: 10,
     color: 'white',
     flex: 1,
-    borderColor: 'white'
+    borderColor: 'gray'
 
   },
   containerStyle: {

@@ -3,8 +3,14 @@ import { Actions } from 'react-native-router-flux';
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
+  FIRST_NAME_CHANGED,
+  LAST_NAME_CHANGED,
+  PHONE_CHANGED,
+  SIGN_UP_USER_FAIL,
+  SIGN_UP_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
+  SIGNUP_USER,
   LOGIN_USER
 } from './types';
 
@@ -22,6 +28,27 @@ export const passwordChanged = (text) => {
   };
 };
 
+export const firstNameChanged = (text) => {
+  return {
+    type: FIRST_NAME_CHANGED,
+    payload: text
+  };
+};
+
+export const lastNameChanged = (text) => {
+  return {
+    type: LAST_NAME_CHANGED,
+    payload: text
+  };
+};
+
+export const phoneChanged = (text) => {
+  return {
+    type: PHONE_CHANGED,
+    payload: text
+  };
+};
+
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
@@ -30,13 +57,13 @@ export const loginUser = ({ email, password }) => {
       .then(user => loginUserSuccess(dispatch, user))
       .catch((error) => {
         console.log(error);
-
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(user => loginUserSuccess(dispatch, user))
           .catch(() => loginUserFail(dispatch));
       });
   };
 };
+
 
 const loginUserFail = (dispatch) => {
   dispatch({ type: LOGIN_USER_FAIL });
@@ -47,6 +74,30 @@ const loginUserSuccess = (dispatch, user) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
-
   Actions.main();
+};
+
+
+export const signUpUser = ({ email, password }) => {
+  return (dispatch) => {
+    dispatch({ type: SIGNUP_USER });
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(user => signUpUserSuccess(dispatch, user))
+      .catch((err) => signUpUserFail(dispatch, err));
+  };
+};
+
+const signUpUserFail = (dispatch, err) => {
+  dispatch({
+    type: SIGN_UP_USER_FAIL,
+    payload: err
+  });
+};
+
+const signUpUserSuccess = (dispatch, user) => {
+  dispatch({
+    type: SIGN_UP_USER_SUCCESS,
+    payload: user
+  });
+  Actions.login();
 };

@@ -20,22 +20,9 @@ class LoginForm extends Component {
     this.props.loginUser({ email, password });
   }
 
-  renderButton() {
-    return (
-      <Buttons
-        title="login"
-        onPress={this.onButtonPress.bind(this)}
-        loading={this.props.loading}
-      />
-    );
-  }
 
   render() {
-    const {
-      textContent,
-      errorTextStyle,
-      signinConatainer
-    } = styles;
+    const { textContent, errorTextStyle, signinConatainer } = styles;
 
     return (
       <View style={signinConatainer}>
@@ -55,7 +42,11 @@ class LoginForm extends Component {
         <Text style={errorTextStyle}>
           {this.props.error}
         </Text>
-        {this.renderButton()}
+        <Buttons
+          title="login"
+          onPress={this.onButtonPress.bind(this)}
+          loading={this.props.loading}
+        />
 
 
       </View>
