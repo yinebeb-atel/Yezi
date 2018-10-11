@@ -5,14 +5,14 @@ import { Actions } from 'react-native-router-flux';
 
 // Make a component
 const Headers = () => {
-  const { textStyle, outerContainerStyles, editProfile } = styles;
+  const { textStyle, outerContainerStyles } = styles;
 
   const settings = () => {
     return (
       <Icon
         name='settings'
         color='#E0E0E0'
-        onPress={() => Actions.gotoC()}
+        onPress={() => Actions.editprofile()}
       />
     );
   };
@@ -41,13 +41,6 @@ const styles = {
   textStyle: {
     fontSize: 20,
     color: '#fff'
-  },
-  editProfile: {
-    icon: 'settings',
-    color: '#E0E0E0',
-    onPress: () => {
-      Actions.signUp();
-    }
   }
 };
 

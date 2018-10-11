@@ -110,14 +110,9 @@ const signUpUserSuccess = (dispatch, firstname, lastname, phone, user) => {
     payload: user
   });
   Actions.login();
-  firebase.database().ref('users').child(`${user.user.uid}`).set({ firstname, lastname, phone });
-};
-
-const storeUserData = (dispatch, firstname, lastname, phone, user) => {
-  //    const newUser = firebase.database().ref('users').child(`${user.uid}`).child('userdata')
-  // User alan = new User("Alan Turing", 1912);
-  return () => {
-    firebase.database().ref('users').child(`${user.uid}`).set({ firstname, lastname, phone })
-  };
+  firebase.database().ref('users')
+    .child(`${user.user.uid}`)
+    .child('userdata')
+    .set({ firstname, lastname, phone });
 };
 

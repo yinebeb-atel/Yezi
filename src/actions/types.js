@@ -7,6 +7,10 @@ export const PHONE_CHANGED = 'phone_changed';
 export const CREATE_ACOUNT = 'create_acount';
 // export const SAVE_NEW_ACOUNT = 'save_new_acount';
 
+export const USER_UPDATE = 'user_update';
+export const USER_FETCH_SUCCESS = 'user_fetch_succes';
+export const USER_UPDATE_SUCCESS = 'user_update_success';
+
 
 export const SIGN_UP_USER_SUCCESS = 'sign_up_user_success';
 export const SIGN_UP_USER_FAIL = 'sign_up_user_fail';

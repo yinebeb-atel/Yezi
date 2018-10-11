@@ -6,6 +6,7 @@ import BusinessList from './components/BusinessList';
 // import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
+import EditProfile from './components/EditProfile'
 import { TabIcon, Headers } from './components/common';
 
 
@@ -59,7 +60,7 @@ const RouterComponent = () => {
             // icon={TabIcon}
             component={BusinessList}
           />
-          {/* <Scene key="profile" component={EmployeeEdit} /> */}
+          <Scene key="editprofile" component={EditProfile} />
 
           {/* <Scene key="employeeCreate" component={EmployeeCreate} title="Create Employee" /> */}
         </Scene>
