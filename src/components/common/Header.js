@@ -1,19 +1,27 @@
 // Import libraries for making a component
 import React from 'react';
-import { Header, SearchBar } from 'react-native-elements';
+import { Header, Icon } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
+
 // Make a component
 const Headers = () => {
-  const { textStyle, outerContainerStyles } = styles;
+  const { textStyle, outerContainerStyles, editProfile } = styles;
 
-  const searchBar = () => {
-    return (<SearchBar placeholder="Type Here..." lightTheme round />);
+  const settings = () => {
+    return (
+      <Icon
+        name='settings'
+        color='#E0E0E0'
+        onPress={() => Actions.gotoC()}
+      />
+    );
   };
 
   return (
     <Header
       // leftComponent={{ icon: 'home', color: 'blue' }}
       centerComponent={{ text: 'Yezi', style: { textStyle } }}
-      rightComponent={{ icon: 'settings', color: 'blue' }}
+      rightComponent={settings()}
       backgroundColor='#fff'
       outerContainerStyles={outerContainerStyles}
     />
@@ -33,8 +41,16 @@ const styles = {
   textStyle: {
     fontSize: 20,
     color: '#fff'
+  },
+  editProfile: {
+    icon: 'settings',
+    color: '#E0E0E0',
+    onPress: () => {
+      Actions.signUp();
+    }
   }
 };
 
 // Make the component available to other parts of the app
 export { Headers };
+

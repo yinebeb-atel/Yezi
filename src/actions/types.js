@@ -3,6 +3,7 @@ export const PASSWORD_CHANGED = 'password_changed';
 export const FIRST_NAME_CHANGED = 'first_name_changed';
 export const LAST_NAME_CHANGED = 'last_name_changed';
 export const PHONE_CHANGED = 'phone_changed';
+export const CREATE_ACOUNT = 'create_acount';
 
 export const SIGN_UP_USER_SUCCESS = 'sign_up_user_success';
 export const SIGN_UP_USER_FAIL = 'sign_up_user_fail';

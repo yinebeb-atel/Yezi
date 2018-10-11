@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux'; // New code
-import { emailChanged, passwordChanged, loginUser } from '../actions';
+import { Actions } from 'react-native-router-flux';
+import { emailChanged, passwordChanged, loginUser, createAcount } from '../actions';
 import { Inputs, Buttons } from './common';
 
 class LoginForm extends Component {
@@ -20,6 +20,10 @@ class LoginForm extends Component {
     this.props.loginUser({ email, password });
   }
 
+  onCreateAcount() {
+    this.props.createAcount();
+    Actions.signUp();
+  }
 
   render() {
     const { textContent, errorTextStyle, signinConatainer } = styles;
@@ -38,7 +42,7 @@ class LoginForm extends Component {
           onChangeText={this.onPasswordChange.bind(this)}
           placeholder="password"
         />
-        <Text style={textContent} onPress={() => Actions.signUp()}>Create Account</Text>
+        <Text style={textContent} onPress={this.onCreateAcount.bind(this)}>Create Account</Text>
         <Text style={errorTextStyle}>
           {this.props.error}
         </Text>
@@ -79,5 +83,5 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps, {
-  emailChanged, passwordChanged, loginUser
+  emailChanged, passwordChanged, loginUser, createAcount
 })(LoginForm);

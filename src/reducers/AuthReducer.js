@@ -9,7 +9,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  SIGNUP_USER
+  SIGNUP_USER,
+  CREATE_ACOUNT
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -37,6 +38,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, phone: action.payload };
     case LOGIN_USER:
       return { ...state, loading: true, error: '' };
+    case CREATE_ACOUNT:
+      return { ...state, ...INITIAL_STATE };
     case SIGNUP_USER:
       return { ...state, loading: true, error: '' };
     case SIGN_UP_USER_SUCCESS:

@@ -26,7 +26,7 @@ const styles = {
 
   titleStyle: {
     fontWeight: '700',
-    color: 'white'
+    color: '#fff'
   },
 
   buttonStyle: {
@@ -35,12 +35,12 @@ const styles = {
     borderWidth: 0.5,
     width: 200,
     height: 40,
-    borderColor: 'white',
+    borderColor: '#fff',
 
   },
   loadingProps: {
     size: 'large',
-    color: '#0074D9'
+    color: '#fff'
   },
 };
 

@@ -6,6 +6,7 @@ import {
   FIRST_NAME_CHANGED,
   LAST_NAME_CHANGED,
   PHONE_CHANGED,
+  CREATE_ACOUNT,
   SIGN_UP_USER_FAIL,
   SIGN_UP_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
@@ -46,6 +47,13 @@ export const phoneChanged = (text) => {
   return {
     type: PHONE_CHANGED,
     payload: text
+  };
+};
+
+export const createAcount = () => {
+  return {
+    type: CREATE_ACOUNT,
+    payload: null
   };
 };
 

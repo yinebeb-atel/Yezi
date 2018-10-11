@@ -34,7 +34,7 @@ const RouterComponent = () => {
           <Scene
             onRight={() => Actions.employeeCreate()}
             rightTitle="Add"
-            key="employeeList2"
+            key="gotoA"
             component={BusinessList}
             initial
             title='A'
@@ -43,16 +43,15 @@ const RouterComponent = () => {
           <Scene
             onRight={() => Actions.employeeCreate()}
             rightTitle="Add"
-            key="B"
+            key="gotoB"
             component={BusinessList}
-            initial
             title='B'
           // icon={TabIcon('user')}
           />
           <Scene
             onRight={() => Actions.employeeCreate()}
             rightTitle="Add"
-            key="C"
+            key="gotoC"
             title="C"
             // iconName="tags"
             // icon={TabIcon}
