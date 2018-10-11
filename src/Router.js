@@ -18,11 +18,13 @@ const RouterComponent = () => {
             key="login"
             component={LoginForm}
             initial
+            backTitle=" "
           />
           <Scene
             key="signUp"
             component={SignUpForm}
             title="SignUp"
+            backTitle=" "
           />
         </Scene>
         <Scene

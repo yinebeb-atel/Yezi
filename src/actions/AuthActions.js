@@ -12,7 +12,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   SIGNUP_USER,
-  LOGIN_USER
+  LOGIN_USER,
+  // SAVE_NEW_ACOUNT
 } from './types';
 
 export const emailChanged = (text) => {
@@ -86,11 +87,11 @@ const loginUserSuccess = (dispatch, user) => {
 };
 
 
-export const signUpUser = ({ email, password }) => {
+export const signUpUser = ({ email, password, firstname, lastname, phone }) => {
   return (dispatch) => {
     dispatch({ type: SIGNUP_USER });
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(user => signUpUserSuccess(dispatch, user))
+      .then(user => signUpUserSuccess(dispatch, firstname, lastname, phone, user))
       .catch((err) => signUpUserFail(dispatch, err));
   };
 };
@@ -102,10 +103,21 @@ const signUpUserFail = (dispatch, err) => {
   });
 };
 
-const signUpUserSuccess = (dispatch, user) => {
+const signUpUserSuccess = (dispatch, firstname, lastname, phone, user) => {
+  // console.log('output!!!!!!!!:', firstname, lastname, phone, user.user.uid);
   dispatch({
     type: SIGN_UP_USER_SUCCESS,
     payload: user
   });
   Actions.login();
+  firebase.database().ref('users').child(`${user.user.uid}`).set({ firstname, lastname, phone });
 };
+
+const storeUserData = (dispatch, firstname, lastname, phone, user) => {
+  //    const newUser = firebase.database().ref('users').child(`${user.uid}`).child('userdata')
+  // User alan = new User("Alan Turing", 1912);
+  return () => {
+    firebase.database().ref('users').child(`${user.uid}`).set({ firstname, lastname, phone })
+  };
+};
+

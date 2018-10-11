@@ -33,8 +33,8 @@ class SignUpForm extends Component {
   }
 
   onButtonPress() {
-    const { email, password } = this.props;
-    this.props.signUpUser({ email, password });
+    const { email, password, firstname, lastname, phone } = this.props;
+    this.props.signUpUser({ email, password, firstname, lastname, phone });
   }
 
 
@@ -97,8 +97,8 @@ const styles = {
 };
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, error, loading } = auth;
-  return { email, password, error, loading };
+  const { email, password, error, loading, firstname, lastname, phone } = auth;
+  return { email, password, error, loading, firstname, lastname, phone };
 };
 
 export default connect(mapStateToProps, {
