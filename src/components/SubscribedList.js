@@ -8,17 +8,9 @@ import { businessListFetch, subscribedFetch } from '../actions';
 import BusinessDetail from './BusinessDetail';
 
 
-class BusinessList extends Component {
+class SubscribedList extends Component {
   componentWillMount() {
-    // const { title } = this.props;
-    // const page = title || 'home';
-    // console.log('Tttllll', title);
-    // if (page === 'Add') {
-    //   this.props.subscribedFetch();
-    // } else {
-    //   this.props.businessListFetch();
-    // }
-    this.props.businessListFetch();
+    this.props.subscribedFetch();
     this.createDataSource(this.props);
   }
 
@@ -35,8 +27,7 @@ class BusinessList extends Component {
   }
 
   renderRow(employee) {
-    const page = 'home';
-    return <BusinessDetail employee={employee} page='add' />;
+    return <BusinessDetail employee={employee} listPage='home' />;
   }
 
   render() {
@@ -91,4 +82,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps, { businessListFetch, subscribedFetch })(BusinessList);
+export default connect(mapStateToProps, { businessListFetch, subscribedFetch })(SubscribedList);

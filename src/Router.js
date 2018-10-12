@@ -3,6 +3,7 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import BusinessList from './components/BusinessList';
+import SubscribedList from './components/SubscribedList';
 import EditProfile from './components/EditProfile';
 import { TabIcon, Headers } from './components/common';
 
@@ -35,7 +36,7 @@ const RouterComponent = () => {
           <Scene key="Home">
             <Scene
               key="home"
-              component={BusinessList}
+              component={SubscribedList}
               title='Home'
               initial
               onRight={() => Actions.suggested()}
@@ -52,7 +53,7 @@ const RouterComponent = () => {
           </Scene>
           <Scene
             key="suggested"
-            component={BusinessList}
+            component={SubscribedList}
             title='Add'
           // icon={TabIcon}
           />

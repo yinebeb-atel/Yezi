@@ -47,7 +47,7 @@ class BusinessDetail extends Component {
 
 
   onSubscribe = (uid) => {
-    if (this.props.listPage) {
+    if (this.props.page === 'home') {
       this.props.userUnSubscribed(this.props.employee);
       this.props.removeFromSubscribed(uid);
     } else {
