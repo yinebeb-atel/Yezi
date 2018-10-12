@@ -5,6 +5,19 @@ import { CircularProgress } from './common';
 
 class BusinessDetail extends Component {
 
+  mapType = (type) => {
+    switch (type) {
+      case 'coffee':
+        return 'local-cafe';
+      case 'restaurant':
+        return 'local-dining';
+      case 'bar':
+        return 'local-bar';
+      default:
+        return 'local-dining';//TODO: default image og logo
+    }
+  }
+
   showProgress = (percentage) => {
     return (<CircularProgress percentage={percentage}>
       <View>
@@ -36,24 +49,20 @@ class BusinessDetail extends Component {
     };
   }
   render() {
-    const thumbnailImage = 'https://i.imgur.com/K3KJ3w4h.jpg';
-    const { name } = this.props.employee;
+    const { name, hours, type, uid } = this.props.employee;
     return (
       <ListItem
-        key={name} // uid
+        key={uid}
         //onPress
         //onLongPress
         component={TouchableOpacity}
-        leftAvatar={{ source: { uri: thumbnailImage } }}
+        leftIcon={{ name: this.mapType(type) }}
         title={name}
-        subtitle={'artist'}
+        subtitle={hours}
         rightSubtitle={this.showRatings()}
-        // badge={this.badgeStyle()}
         containerStyle={styles.containerStyle}
         rightElement={this.showProgress()}
-
       />
-
     );
   }
 

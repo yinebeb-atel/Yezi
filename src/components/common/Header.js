@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 
 // Make a component
 const Headers = () => {
-  const { textStyle, outerContainerStyles } = styles;
+  const { outerContainerStyles } = styles;
 
   const settings = () => {
     return (
@@ -17,11 +17,26 @@ const Headers = () => {
     );
   };
 
+  const addNew = () => {
+    return (
+      <Icon
+        name='add'
+        color='#E0E0E0'
+        onPress={() => Actions.BusinessList()}
+      />
+    );
+  };
+
   return (
     <Header
       // leftComponent={{ icon: 'home', color: 'blue' }}
-      centerComponent={{ text: 'Yezi', style: { textStyle } }}
-      rightComponent={settings()}
+      centerComponent={{
+        text: 'Yezi',
+        fontSize: 20,
+        color: '#fff'
+      }}
+      leftComponent={settings()}
+      rightComponent={addNew()}
       backgroundColor='#fff'
       outerContainerStyles={outerContainerStyles}
     />
@@ -37,10 +52,6 @@ const styles = {
     shadowOpacity: 0.2,
     elevation: 2,
     position: 'relative'
-  },
-  textStyle: {
-    fontSize: 20,
-    color: '#fff'
   }
 };
 

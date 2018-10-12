@@ -3,33 +3,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
 import { View, ListView } from 'react-native';
+import { subscribedFetch } from '../actions';
 import BusinessDetail from './BusinessDetail';
 
-const URL = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json'
-const API_KEY = 'AIzaSyDvRAroyj65Jdpy0nYxqiOffyNIxEmgpxw';
-const LATITUDE = '47.6077';
-const LONGTUDE = '-122.335167';
-const INPUT = 'coffee';
-const FILTER = 'shop';
-const FIELDS = 'photos,formatted_address,name,opening_hours,rating';
 
-class SearchShop extends Component {
+class SubscribedList extends Component {
+  componentWillMount() {
+    this.props.subscribedFetch();
 
-  componentWillMount() { //redux
-    axios.get(`${URL}?input=${INPUT}%20${FILTER}&inputtype=textquery&fields=${FIELDS}&locationbias=circle:2000@${LATITUDE},${LONGTUDE}&key=${API_KEY}`)
-      .then(shop => this.createDataSource(shop));
+    this.createDataSource(this.props);
   }
 
-  createDataSource({ shop }) {
+  componentWillReceiveProps(nextProps) {
+    this.createDataSource(nextProps);
+  }
+
+  createDataSource({ employees }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(shop);
+    this.dataSource = ds.cloneWithRows(employees);
   }
 
-  renderRow(shop) {
-    return <BusinessDetail shop={shop} />;
+  renderRow(employee) {
+    return <BusinessDetail employee={employee} />;
   }
 
   render() {
@@ -77,11 +75,11 @@ const styles = {
   }
 };
 
+const mapStateToProps = state => {
+  const employees = _.map(state.employees, (val, uid) => {
+    return { ...val, uid };
+  });
+  return { employees };
+};
 
-export default SearchShop;
-
-//places API
-// 
-
-//Geolocation requests
-https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDvRAroyj65Jdpy0nYxqiOffyNIxEmgpxw
+export default connect(mapStateToProps, { subscribedFetch })(SubscribedList);

@@ -3,12 +3,15 @@ import { Actions } from 'react-native-router-flux';
 import {
   EMPLOYEE_UPDATE,
   EMPLOYEE_CREATE,
-  EMPLOYEES_FETCH_SUCCESS,
+  SUBSCRIBED_FETCH_SUCCESS, //
+  SUBSCRIBE_FETCH_SUCCESS,
   EMPLOYEE_SAVE_SUCCESS,
   USER_UPDATE,
   USER_UPDATE_SUCCESS,
   USER_FETCH_SUCCESS
 } from './types';
+import temp from '../components/temp.json';
+
 
 export const employeeUpdate = ({ prop, value }) => {
   return {
@@ -17,11 +20,12 @@ export const employeeUpdate = ({ prop, value }) => {
   };
 };
 
+
 export const employeeCreate = ({ name, phone, shift }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/employees`)
+    firebase.database().ref(`/users/${currentUser.uid}/subscibe`)
       .push({ name, phone, shift })
       .then(() => {
         dispatch({ type: EMPLOYEE_CREATE });
@@ -30,16 +34,49 @@ export const employeeCreate = ({ name, phone, shift }) => {
   };
 };
 
-export const employeesFetch = () => {
+export const subscribedFetch = () => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/employees`)
+    firebase.database().ref('users')
+      .child(`${currentUser.uid}`)
+      .child('subscribed')
       .on('value', snapshot => {
-        dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
+        dispatch({ type: SUBSCRIBED_FETCH_SUCCESS, payload: snapshot.val() });
       });
   };
 };
+
+export const businessListFetch = () => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref('users')
+      .child(`${currentUser.uid}`)
+      .child('suggested')
+      .on('value', snapshot => {
+        dispatch({ type: SUBSCRIBE_FETCH_SUCCESS, payload: snapshot.val() });
+      });
+  };
+};
+
+
+// export const employeesFetch = () => {
+//   return (dispatch) => dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: { temp } });
+// };
+
+// export const subscribedFetch = () => {
+//   const { currentUser } = firebase.auth();
+//   console.log('user!!!!', currentUser.uid);
+//   return (dispatch) => {
+//     firebase.database().ref(`/users/${currentUser.uid}/subscriptions`)
+//       .on('value', (snapshot) => {
+//         console.log('snapshot:', snapshot.val());
+//         dispatch({ type: SUBSCRIBED_FETCH_SUCCESS, payload: snapshot.val() });
+//       }, (errorObject) => console.log('The read failed: ', errorObject.code)
+//       );
+//   };
+// };
 
 export const employeeSave = ({ name, phone, shift, uid }) => {
   const { currentUser } = firebase.auth();
@@ -76,8 +113,7 @@ export const userUpdate = ({ prop, value }) => {
 
 export const updateUserProfile = ({ firstname, lastname, phone }) => {
   const { currentUser } = firebase.auth();
-  console.log(firstname, lastname, phone, currentUser.uid)
-    ;
+  console.log(firstname, lastname, phone, currentUser.uid);
   return (dispatch) => {
     firebase.database().ref('users').child(`${currentUser.uid}`).child('userdata')
       .update({ firstname, lastname, phone })
