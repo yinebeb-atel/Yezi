@@ -27,7 +27,7 @@ class SubscribedList extends Component {
   }
 
   renderRow(employee) {
-    return <BusinessDetail employee={employee} listPage='home' />;
+    return <BusinessDetail employee={employee} page='home' />;
   }
 
   render() {

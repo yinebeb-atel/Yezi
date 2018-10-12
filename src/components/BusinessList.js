@@ -18,6 +18,7 @@ class BusinessList extends Component {
     // } else {
     //   this.props.businessListFetch();
     // }
+    console.log("HOMEEEEEEEEE");
     this.props.businessListFetch();
     this.createDataSource(this.props);
   }
@@ -35,7 +36,6 @@ class BusinessList extends Component {
   }
 
   renderRow(employee) {
-    const page = 'home';
     return <BusinessDetail employee={employee} page='add' />;
   }
 

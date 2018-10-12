@@ -36,11 +36,11 @@ const RouterComponent = () => {
           <Scene key="Home">
             <Scene
               key="home"
-              component={SubscribedList}
+              component={BusinessList}
               title='Home'
               initial
-              onRight={() => Actions.suggested()}
-              rightTitle="Add"
+              onRight={() => Actions.edit()}
+              rightTitle="Edit"
             // icon={TabIcon}
             />
 

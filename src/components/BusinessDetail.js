@@ -46,24 +46,26 @@ class BusinessDetail extends Component {
   };
 
 
-  onSubscribe = (uid) => {
-    if (this.props.page === 'home') {
-      this.props.userUnSubscribed(this.props.employee);
-      this.props.removeFromSubscribed(uid);
-    } else {
+  onSubscribe = (uid, page) => {
+    const show = page || 'home';
+    if (show === 'add') {
       this.props.userSubscribed(this.props.employee);
       this.props.removeFromSuggested(uid);
+    } else {
+      this.props.userUnSubscribed(this.props.employee);
+      this.props.removeFromSubscribed(uid);
     }
   }
 
   render() {
     const { name, hours, type, count, rating, uid } = this.props.employee;
+    console.log('page', this.props.page);
     const percentage = count === 0 ? 0 : (count / 10) * 100;
     return (
       <ListItem
         key={uid}
         //onPress
-        onLongPress={() => this.onSubscribe(uid)}
+        onLongPress={() => this.onSubscribe(uid, this.props.page)}
         component={TouchableOpacity}
         leftIcon={{ name: this.mapType(type) }}
         title={name}

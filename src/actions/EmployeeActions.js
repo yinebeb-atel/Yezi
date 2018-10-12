@@ -10,7 +10,7 @@ import {
 // Fetch data actions
 export const subscribedFetch = () => {
   const { currentUser } = firebase.auth();
-
+  console.log('currentUser, currentUser');
   return (dispatch) => {
     firebase.database().ref('users')
       .child(`${currentUser.uid}`)
@@ -24,7 +24,7 @@ export const subscribedFetch = () => {
 
 export const businessListFetch = () => {
   const { currentUser } = firebase.auth();
-
+  console.log('currentUser, currentUser');
   return (dispatch) => {
     firebase.database().ref('users')
       .child(`${currentUser.uid}`)
