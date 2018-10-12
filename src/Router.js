@@ -1,13 +1,10 @@
 import React from 'react';
-import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Scene, Router } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import SubscribedList from './components/SubscribedList';
 import BusinessList from './components/BusinessList';
-// import Subscribed from './components/Subscribed';
-// import EmployeeList from './components/EmployeeList';
-import EmployeeEdit from './components/EmployeeEdit';
-import EditProfile from './components/EditProfile'
+import EditProfile from './components/EditProfile';
 import { TabIcon, Headers } from './components/common';
 
 
@@ -36,19 +33,22 @@ const RouterComponent = () => {
           navBar={Headers}
         >
           <Scene
-            key="home"
+            key="subscribed"
             component={SubscribedList}
-            initial
             title='home'
             icon={TabIcon}
           />
           <Scene
-            key="compass"
+            key="suggested"
             component={BusinessList}
             title='compass'
             icon={TabIcon}
           />
-          {/* <Scene key="editprofile" component={EditProfile} /> */}
+          <Scene
+            key="editprofile"
+            component={EditProfile}
+            title='editprofile'
+          />
 
         </Scene>
       </Scene>

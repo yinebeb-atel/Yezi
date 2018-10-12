@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { ListItem, Rating } from 'react-native-elements';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { CircularProgress } from './common';
+import { userSubscribed, removeFromSuggested } from '../actions';
+
 
 class BusinessDetail extends Component {
+
 
   mapType = (type) => {
     switch (type) {
@@ -19,21 +23,16 @@ class BusinessDetail extends Component {
   }
 
   showProgress = (percentage) => {
-    return (<CircularProgress percentage={percentage}>
-      <View>
-        <Text>{percentage}</Text>
-      </View>
-    </CircularProgress>
+    return (<CircularProgress percentage={percentage} />
     );
   };
 
-  showRatings = () => {
+  showRatings = (rating) => {
     return (
       <Rating
-
         type="star"
         fractions={1}
-        startingValue={3.6}
+        startingValue={rating}
         imageSize={10}
         onFinishRating={this.ratingCompleted}
         style={styles.ratingStyle}
@@ -41,27 +40,27 @@ class BusinessDetail extends Component {
     );
   };
 
-  badgeStyle = (v = 4) => {
-    return {
-      value: v,
-      textStyle: { color: 'white' },
-      containerStyle: { marginTop: -20, backgroundColor: '#E0E0E0' }
-    };
+
+  onSubscribe = (uid) => {
+    this.props.userSubscribed(this.props.employee);
+    this.props.removeFromSuggested(uid);
   }
+
   render() {
-    const { name, hours, type, uid } = this.props.employee;
+    const { name, hours, type, count, rating, uid } = this.props.employee;
+    const percentage = count === 0 ? 0 : (count / 10) * 100;
     return (
       <ListItem
         key={uid}
         //onPress
-        //onLongPress
+        onLongPress={() => this.onSubscribe(uid)}
         component={TouchableOpacity}
         leftIcon={{ name: this.mapType(type) }}
         title={name}
         subtitle={hours}
-        rightSubtitle={this.showRatings()}
+        rightSubtitle={this.showRatings(rating)}
         containerStyle={styles.containerStyle}
-        rightElement={this.showProgress()}
+        rightElement={this.showProgress(percentage)}
       />
     );
   }
@@ -82,4 +81,4 @@ const styles = {
   }
 };
 
-export default BusinessDetail;
+export default connect(null, { userSubscribed, removeFromSuggested })(BusinessDetail);

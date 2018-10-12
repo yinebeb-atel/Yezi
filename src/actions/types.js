@@ -23,4 +23,5 @@ export const EMPLOYEE_UPDATE = 'employee_update';
 export const EMPLOYEE_CREATE = 'employee_create';
 export const SUBSCRIBE_FETCH_SUCCESS = 'subscribe_fetch_success';
 export const SUBSCRIBED_FETCH_SUCCESS = 'employees_fetch_success';
-export const EMPLOYEE_SAVE_SUCCESS = 'employee_save_success';
+//export const EMPLOYEE_SAVE_SUCCESS = 'employee_save_success';
+export const USER_SUBSCRIBE_SUCCESS = 'user_subscribe_success';

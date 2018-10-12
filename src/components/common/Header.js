@@ -22,7 +22,7 @@ const Headers = () => {
       <Icon
         name='add'
         color='#E0E0E0'
-        onPress={() => Actions.BusinessList()}
+        onPress={() => Actions.suggested()}
       />
     );
   };

@@ -6,23 +6,9 @@ import { SearchBar } from 'react-native-elements';
 import { View, ListView } from 'react-native';
 import { businessListFetch } from '../actions';
 import BusinessDetail from './BusinessDetail';
-import temp from './temp';
-// const URL = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json';
-// const API_KEY = 'AIzaSyDvRAroyj65Jdpy0nYxqiOffyNIxEmgpxw';
-// const LATITUDE = '47.6077';
-// const LONGTUDE = '-122.335167';
-// const INPUT = 'coffee';
-// const FILTER = 'shop';
-// const FIELDS = 'photos,formatted_address,name,opening_hours,rating';
 
-// componentWillMount() {
-//   axios.get(`${URL}?input=${INPUT}%20${FILTER}&inputtype=textquery&fields=${FIELDS}&locationbias=circle:2000@${LATITUDE},${LONGTUDE}&key=${API_KEY}`)
-//     .then(shop => console.log('shop:', shop));
-//     //.then(shop => this.createDataSource(shop));
-// }
 
 class BusinessList extends Component {
-
   componentWillMount() {
     this.props.businessListFetch();
     this.createDataSource(this.props);
@@ -64,8 +50,6 @@ class BusinessList extends Component {
           dataSource={this.dataSource}
           renderRow={this.renderRow}
         />
-
-
       </View>
     );
   }

@@ -7,7 +7,6 @@ class TabIcon extends Component {
   render() {
     const { selected, title } = this.props;
     const color = selected ? '#00f240' : '#301c2a';
-    console.log('Kkkkkkkkkkkkkkk:', title);
     return (
       <View style={styles.containeStyle}>
         <Icon

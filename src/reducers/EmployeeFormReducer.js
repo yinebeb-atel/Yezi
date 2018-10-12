@@ -1,7 +1,7 @@
 import {
   EMPLOYEE_UPDATE,
   EMPLOYEE_CREATE,
-  EMPLOYEE_SAVE_SUCCESS,
+  USER_SUBSCRIBE_SUCCESS, //EMPLOYEE_SAVE_SUCCESS,
   USER_UPDATE,
   USER_UPDATE_SUCCESS,
 } from '../actions/types';
@@ -24,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
     case EMPLOYEE_CREATE:
       return INITIAL_STATE;
-    case EMPLOYEE_SAVE_SUCCESS:
+    case USER_SUBSCRIBE_SUCCESS:
       return INITIAL_STATE;
     default:
       return state;
