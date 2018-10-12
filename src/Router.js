@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Scene, Router, Actions, ActionConst } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import BusinessList from './components/BusinessList';
@@ -32,6 +32,7 @@ const RouterComponent = () => {
           tabBarStyle={{ backgroundColor: '#FFFFFF' }}
           //navBar={Headers}
           hideBackImage
+
         >
           <Scene key="Home">
             <Scene
@@ -41,6 +42,8 @@ const RouterComponent = () => {
               initial
               onRight={() => Actions.edit()}
               rightTitle="Edit"
+              type="reset"
+
             // icon={TabIcon}
             />
 
@@ -51,6 +54,7 @@ const RouterComponent = () => {
             // icon={TabIcon}
             />
           </Scene>
+
           <Scene
             key="suggested"
             component={SubscribedList}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListItem, Rating } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 import { TouchableOpacity } from 'react-native';
 import { CircularProgress } from './common';
 import {
@@ -59,7 +60,6 @@ class BusinessDetail extends Component {
 
   render() {
     const { name, hours, type, count, rating, uid } = this.props.employee;
-    console.log('page', this.props.page);
     const percentage = count === 0 ? 0 : (count / 10) * 100;
     return (
       <ListItem

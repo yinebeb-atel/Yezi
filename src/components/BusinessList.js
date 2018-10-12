@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 import { View, ListView } from 'react-native';
 import { businessListFetch, subscribedFetch } from '../actions';
 import BusinessDetail from './BusinessDetail';
@@ -40,6 +41,7 @@ class BusinessList extends Component {
   }
 
   render() {
+    console.log('Actions.currentScene Business', Actions.currentScene);
     return (
       <View style={styles.containerStyle}>
         <SearchBar
