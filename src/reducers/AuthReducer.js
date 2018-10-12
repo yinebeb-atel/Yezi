@@ -10,7 +10,9 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER,
   SIGNUP_USER,
-  CREATE_ACOUNT
+  CREATE_ACOUNT,
+  USER_FETCH_SUCCESS,
+  USER_UPDATE
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -64,6 +66,10 @@ export default (state = INITIAL_STATE, action) => {
         password: '',
         loading: false
       };
+    case USER_FETCH_SUCCESS:
+      return action.payload;
+    case USER_UPDATE:
+      return { ...state, [action.payload.prop]: action.payload.value };
     default:
       return state;
   }

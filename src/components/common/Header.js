@@ -1,22 +1,9 @@
-// Import libraries for making a component
 import React from 'react';
 import { Header, Icon } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
-// Make a component
 const Headers = () => {
   const { outerContainerStyles } = styles;
-
-  const settings = () => {
-    return (
-      <Icon
-        name='settings'
-        color='#E0E0E0'
-        onPress={() => Actions.editprofile()}
-      />
-    );
-  };
-
   const addNew = () => {
     return (
       <Icon
@@ -29,13 +16,11 @@ const Headers = () => {
 
   return (
     <Header
-      // leftComponent={{ icon: 'home', color: 'blue' }}
       centerComponent={{
         text: 'Yezi',
         fontSize: 20,
         color: '#fff'
       }}
-      leftComponent={settings()}
       rightComponent={addNew()}
       backgroundColor='#fff'
       outerContainerStyles={outerContainerStyles}

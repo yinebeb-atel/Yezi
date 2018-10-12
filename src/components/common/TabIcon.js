@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-// import { Icon } from 'react-native-elements';
 
 class TabIcon extends Component {
   render() {
@@ -10,10 +9,10 @@ class TabIcon extends Component {
     return (
       <View style={styles.containeStyle}>
         <Icon
-          style={styles.iconStyle}
           color={color}
           name={title}
           size={18}
+          color='#E0E0E0'
         />
       </View>
     );
@@ -28,10 +27,7 @@ const styles = {
     alignSelf: 'center',
     justifyContent: 'center'
   },
-  iconStyle: {
-    height: 26,
-    width: 26
-  }
+
 };
 
 export { TabIcon };

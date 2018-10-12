@@ -1,16 +1,11 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
-  EMPLOYEE_UPDATE,
-  EMPLOYEE_CREATE,
   SUBSCRIBED_FETCH_SUCCESS, //
-  SUBSCRIBE_FETCH_SUCCESS,
-  USER_SUBSCRIBE_SUCCESS, //EMPLOYEE_SAVE_SUCCESS,
+  SUGGESESED_FETCH_SUCCESS,
   USER_UPDATE,
-  USER_UPDATE_SUCCESS,
   USER_FETCH_SUCCESS
 } from './types';
-import temp from '../components/temp.json';
 
 // Fetch data actions
 export const subscribedFetch = () => {
@@ -26,7 +21,7 @@ export const subscribedFetch = () => {
   };
 };
 
-// Update data actions
+
 export const businessListFetch = () => {
   const { currentUser } = firebase.auth();
 
@@ -35,11 +30,12 @@ export const businessListFetch = () => {
       .child(`${currentUser.uid}`)
       .child('suggested')
       .on('value', snapshot => {
-        dispatch({ type: SUBSCRIBE_FETCH_SUCCESS, payload: snapshot.val() });
+        dispatch({ type: SUGGESESED_FETCH_SUCCESS, payload: snapshot.val() });
       });
   };
 };
 
+// Update data actions
 export const userSubscribed = ({ name, hours, type, count, rating, uid }) => {
   const { currentUser } = firebase.auth();
 
@@ -102,11 +98,10 @@ export const userFetch = () => {
 export const updateUserProfile = ({ firstname, lastname, phone }) => {
   const { currentUser } = firebase.auth();
   console.log(firstname, lastname, phone, currentUser.uid);
-  return (dispatch) => {
+  return () => {
     firebase.database().ref('users').child(`${currentUser.uid}`).child('userdata')
       .update({ firstname, lastname, phone })
       .then(() => {
-        dispatch({ type: USER_UPDATE_SUCCESS });
         Actions.employeeCreate();
       });
   };

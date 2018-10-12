@@ -1,8 +1,7 @@
 import React from 'react';
-import { Scene, Router } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
-import SubscribedList from './components/SubscribedList';
 import BusinessList from './components/BusinessList';
 import EditProfile from './components/EditProfile';
 import { TabIcon, Headers } from './components/common';
@@ -30,26 +29,33 @@ const RouterComponent = () => {
           key="main"
           tabs
           tabBarStyle={{ backgroundColor: '#FFFFFF' }}
-          navBar={Headers}
+          //navBar={Headers}
+          hideBackImage
         >
-          <Scene
-            key="subscribed"
-            component={SubscribedList}
-            title='home'
-            icon={TabIcon}
-          />
+          <Scene key="Home">
+            <Scene
+              key="home"
+              component={BusinessList}
+              title='Home'
+              initial
+              onRight={() => Actions.suggested()}
+              rightTitle="Add"
+            // icon={TabIcon}
+            />
+
+            <Scene
+              key="edit"
+              component={EditProfile}
+              title='Edit'
+            // icon={TabIcon}
+            />
+          </Scene>
           <Scene
             key="suggested"
             component={BusinessList}
-            title='compass'
-            icon={TabIcon}
+            title='Add'
+          // icon={TabIcon}
           />
-          <Scene
-            key="editprofile"
-            component={EditProfile}
-            title='editprofile'
-          />
-
         </Scene>
       </Scene>
     </Router>

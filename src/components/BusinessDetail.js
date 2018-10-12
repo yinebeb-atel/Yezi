@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 import { ListItem, Rating } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native';
 import { CircularProgress } from './common';
-import { userSubscribed, removeFromSuggested } from '../actions';
+import {
+  userSubscribed,
+  removeFromSuggested,
+  userUnSubscribed,
+  removeFromSubscribed
+} from '../actions';
 
 
 class BusinessDetail extends Component {
@@ -42,8 +47,13 @@ class BusinessDetail extends Component {
 
 
   onSubscribe = (uid) => {
-    this.props.userSubscribed(this.props.employee);
-    this.props.removeFromSuggested(uid);
+    if (this.props.listPage) {
+      this.props.userUnSubscribed(this.props.employee);
+      this.props.removeFromSubscribed(uid);
+    } else {
+      this.props.userSubscribed(this.props.employee);
+      this.props.removeFromSuggested(uid);
+    }
   }
 
   render() {
@@ -81,4 +91,9 @@ const styles = {
   }
 };
 
-export default connect(null, { userSubscribed, removeFromSuggested })(BusinessDetail);
+export default connect(null, {
+  userSubscribed,
+  removeFromSuggested,
+  userUnSubscribed,
+  removeFromSubscribed
+})(BusinessDetail);

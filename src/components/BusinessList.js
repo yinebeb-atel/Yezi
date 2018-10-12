@@ -4,13 +4,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
 import { View, ListView } from 'react-native';
-import { businessListFetch } from '../actions';
+import { businessListFetch, subscribedFetch } from '../actions';
 import BusinessDetail from './BusinessDetail';
 
 
 class BusinessList extends Component {
   componentWillMount() {
-    this.props.businessListFetch();
+    const { title } = this.props;
+    if (title === 'Home') {
+      this.props.businessListFetch();
+    } else {
+      this.props.subscribedFetch();
+    }
     this.createDataSource(this.props);
   }
 
@@ -27,9 +32,8 @@ class BusinessList extends Component {
   }
 
   renderRow(employee) {
-    console.log('employeeemployee', employee);
-
-    return <BusinessDetail employee={employee} />;
+    const page = 'home';
+    return <BusinessDetail employee={employee} listPage={page} />;
   }
 
   render() {
@@ -79,9 +83,9 @@ const mapStateToProps = state => {
   const employees = _.map(state.employees, (val, uid) => {
     return { ...val, uid };
   });
-
+  //console.log('homepage', state.homepage);
   return { employees };
 };
 
 
-export default connect(mapStateToProps, { businessListFetch })(BusinessList);
+export default connect(mapStateToProps, { businessListFetch, subscribedFetch })(BusinessList);
